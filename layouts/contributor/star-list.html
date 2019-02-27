@@ -1,0 +1,31 @@
+{{ define "main" }}
+<style>
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+        margin: 5px;
+    }
+</style>
+
+<div style="text-align: center"><h1>贡献之星</h1></div>
+<div>
+{{ range where (where .Site.Pages "Type" "contributor") ".Params.seasons" "!=" nil }}
+
+    {{ $link := .RelPermalink }}
+    {{ $id := .Params.github }}
+    {{ with $id }}
+    {{ $user_json := getJSON "https://api.github.com/users/" $id }}
+    <a href="{{ $link }}">
+        <div class="avatar">
+            <img src="{{ $user_json.avatar_url }}">
+        </div>
+    </a>
+    {{ end }}
+
+{{end}}
+</div>
+
+{{end}}
