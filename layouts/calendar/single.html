@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+
+    <link href='/fullcalendar/core/main.min.css' rel='stylesheet' />
+    <link href='/fullcalendar/daygrid/main.min.css' rel='stylesheet' />
+
+    <script src='/fullcalendar/core/main.min.js'></script>
+    <script src='/fullcalendar/daygrid/main.min.js'></script>
+    <script src='/fullcalendar/google-calendar/main.min.js'></script>
+    <script src='/fullcalendar/core/locale/zh-cn.js'></script>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid', 'googleCalendar' ],
+          googleCalendarApiKey: 'AIzaSyC8ktd6qXW10MZHyTo1wOb7l4xp0_x-s2A',
+          events: {
+            googleCalendarId: '4ss12f0mqr3tbp1t2fe369slf4@group.calendar.google.com'
+          },
+          locale: 'zh-cn'
+        });
+
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div id='calendar' style="width: 1024px;"></div>
+
+  </body>
+</html>
+
+{{ end }}
